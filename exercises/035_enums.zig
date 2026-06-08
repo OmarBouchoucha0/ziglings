@@ -20,7 +20,7 @@
 const std = @import("std");
 
 // Please complete the enum!
-const Ops = enum { ??? };
+const Ops = enum { inc, pow, dec };
 
 pub fn main() void {
     const operations = [_]Ops{
@@ -47,7 +47,6 @@ pub fn main() void {
             },
             // No "else" needed! Why is that?
         }
-
         std.debug.print("{} ", .{current_value});
     }
 
