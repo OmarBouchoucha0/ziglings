@@ -110,26 +110,27 @@ pub fn main() void {
 
             // This ingredient isn't required, so skip it.
             if (!required) continue;
-
             // See if the customer wanted this ingredient.
             // (Remember that want_it will be the index number of
             // the ingredient based on its position in the
             // required ingredient list for each food.)
-            const found = for (wanted_ingredients) |want_it| {
-                if (required_ingredient == want_it) break true;
-            } else false;
-
-            // We did not find this required ingredient, so we
-            // can't make this Food. Continue the outer loop.
-            if (!found) continue :food_loop;
+            for (wanted_ingredients) |want_it| {
+                if (required_ingredient == want_it) break;
+            } else {
+                continue :food_loop;
+            }
         }
 
         // If we get this far, the required ingredients were all
         // wanted for this Food.
         //
         // Please return this Food from the loop.
-        break;
+        break food;
+    } else {
+        const mac_and_cheese = menu[0];
+        break :food_loop mac_and_cheese;
     };
+
     // ^ Oops! We forgot to return Mac & Cheese as the default
     // Food when the requested ingredients aren't found.
 
