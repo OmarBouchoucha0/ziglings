@@ -82,18 +82,19 @@ fn printTuple(tuple: anytype) void {
     //         @typeInfo(Circle).@"struct".field_types
     //
     // This will be an array of field types.
-    const field_types = ???;
+    const struct_info = @typeInfo(@TypeOf(tuple)).@"struct";
+    const field_types = struct_info.field_types;
 
     // This will be an array of field names.
-    const field_names = ???;
+    const field_names = struct_info.field_names;
 
     // 2. Loop through each field. This must be done at compile
     // time.
     //
     //     Hint: remember 'inline' loops?
     //
-    for (???, ???) |???, ???| {
-        // 3. Print the field's name, type, and value.
+    inline for (field_names, field_types) |field_name, field_type| {
+        // 3. Print the field's name, type, and value
         //
         //     You'll need this builtin:
         //
@@ -116,7 +117,7 @@ fn printTuple(tuple: anytype) void {
         print("\"{s}\"({any}):{any} ", .{
             field_name,
             field_type,
-            ???,
+            @field(tuple, field_name),
         });
     }
 }
