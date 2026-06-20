@@ -100,7 +100,6 @@
 //
 const std = @import("std");
 const print = std.debug.print;
-
 pub fn main() !void {
     // Max number to multiply
     const size = 15;
@@ -131,7 +130,7 @@ pub fn main() !void {
         for (0..size) |b| {
             // What formatting is needed here to make our columns
             // nice and straight?
-            print("{???} ", .{(a + 1) * (b + 1)});
+            print("{d:>3} ", .{(a + 1) * (b + 1)});
         }
 
         // After each row we use double line feed:
